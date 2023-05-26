@@ -52,6 +52,19 @@ class LinkedList:
             self.head=new_node
         self.length+=1    
         return True    #optional
+    
+    def pop_first(self):
+        if self.length==0:
+            return None
+        else:
+            temp=self.head
+            self.head=self.head.next
+            temp.next=None
+            self.length-=1
+            if self.length==0:
+                self.tail=None
+            return temp  #return temp.value for testing.
+        
 
 
 
@@ -72,11 +85,18 @@ print("The list is now updated.")
 # print("third senario")
 # print(my_linked_list.pop())
 
-my_linked_list.prepend(56)
+#my_linked_list.prepend(56)
 my_linked_list.print_list()
 print('Head:', my_linked_list.head.value)
 print('Tail:', my_linked_list.tail.value)
 print('Length:', my_linked_list.length)
+
+
+print("poping first")
+print(my_linked_list.pop_first())
+print(my_linked_list.pop_first())
+print(my_linked_list.pop_first())
+#
 
 
 """
