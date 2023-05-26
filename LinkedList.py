@@ -42,12 +42,16 @@ class LinkedList:
                 self.tail=None
             return temp.value
         #return temp
-    # def prepend(self,value):
-    #     if self.head==None:
-    #         self.head.value=value
-    #         self.tail.next=None
-    #     else    
-
+    def prepend(self,value):
+        new_node=Node(value)
+        if self.head==None: #self.length==0
+            self.head=new_node
+            self.tail=new_node
+        else:
+            new_node.next=self.head
+            self.head=new_node
+        self.length+=1    
+        return True    #optional
 
 
 
@@ -60,13 +64,19 @@ print('Tail:', my_linked_list.tail.value)
 print('Length:', my_linked_list.length)
 my_linked_list.append(2)
 print("The list is now updated.")
+#my_linked_list.print_list()
+# print("First Sceario")
+# print(my_linked_list.pop())
+# print("Second Senario")
+# print(my_linked_list.pop())
+# print("third senario")
+# print(my_linked_list.pop())
+
+my_linked_list.prepend(56)
 my_linked_list.print_list()
-print("First Sceario")
-print(my_linked_list.pop())
-print("Second Senario")
-print(my_linked_list.pop())
-print("third senario")
-print(my_linked_list.pop())
+print('Head:', my_linked_list.head.value)
+print('Tail:', my_linked_list.tail.value)
+print('Length:', my_linked_list.length)
 
 
 """
