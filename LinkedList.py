@@ -98,13 +98,28 @@ class LinkedList:
             return self.prepend(value)
         if index == self.length:
             return self.append(value)
-        
         new_node=Node(value)
         temp=self.get(index - 1)
         new_node.next=temp.next
         temp.next=new_node
         self.length+=1
         return True
+    
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if index ==0:
+            return self.pop_first()
+        if index == self.length-1:
+            return self.pop()
+        
+        prev = self.get(index - 1)
+        temp = prev.next   #temp = self.get(index) <--less efficient
+        prev.next=temp.next
+        temp.next=None
+        self.length-=1
+        return temp
+
 
  
 
@@ -149,6 +164,10 @@ my_linked_list.print_list()
 
 print("Testing for insert command")
 my_linked_list.insert(0,33)
+my_linked_list.print_list()
+
+print("testing remove")
+my_linked_list.remove(1)
 my_linked_list.print_list()
 
                                                                                                                     
