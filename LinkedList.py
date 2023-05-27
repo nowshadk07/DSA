@@ -66,7 +66,7 @@ class LinkedList:
             return temp  #return temp.value for testing.
 
     def get(self,value):
-        if value<=0 or value>=self.length:
+        if value<0 or value>=self.length:
             return None
         else:
             temp=self.head
@@ -90,6 +90,22 @@ class LinkedList:
             temp.value=value
             return True
         return False
+    
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        
+        new_node=Node(value)
+        temp=self.get(index - 1)
+        new_node.next=temp.next
+        temp.next=new_node
+        self.length+=1
+        return True
+
  
 
         
@@ -117,7 +133,7 @@ print("The list is now updated.")
 my_linked_list.print_list()
 
 print("using get command")
-print(my_linked_list.get(2))
+print(my_linked_list.get(0))
 
 
 
@@ -128,13 +144,11 @@ my_linked_list.set_value(2,54)
 
 my_linked_list.print_list()
 
-"""
-    EXPECTED OUTPUT:
-    ----------------
-    Head: 4
-    Tail: 4
-    Length: 1
-    
-"""
+
+
+
+print("Testing for insert command")
+my_linked_list.insert(0,33)
+my_linked_list.print_list()
 
                                                                                                                     
