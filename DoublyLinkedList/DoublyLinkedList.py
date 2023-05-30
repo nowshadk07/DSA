@@ -106,6 +106,32 @@ class DoublyLinkedList:
 
         return temp           
 
+    def set_value(self,index,value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self,index,value):
+        if index < 0 or index > self.length:
+            return False
+        if index==0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node=Node(value)
+        before = self.get(index -1)
+        after = before.next
+        new_node.prev = before
+        new_node.next = after
+        before.next = new_node
+        after.prev = new_node
+
+        self.length+=1
+        return True
+        
+
 
 
 
@@ -134,7 +160,15 @@ print(my_doubly_linked_list.pop_first().value)
 my_doubly_linked_list.print_list()
 
 print("testing get")
-print(my_doubly_linked_list.get(3))
+print(my_doubly_linked_list.get(3).value)
+
+print("testing set_value method")
+my_doubly_linked_list.set_value(2,7)
+my_doubly_linked_list.print_list()
+
+print("testing insert..")
+my_doubly_linked_list.insert(2,45)
+my_doubly_linked_list.print_list()
                                        
                                        
 
