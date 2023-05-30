@@ -97,8 +97,9 @@ class DoublyLinkedList:
         if index < 0 or index >= self.length:
             return None
         temp = self.head
-        if index < self.length/2:
-            temp=temp.next
+        if index < (self.length/2):
+            for _ in range(index):
+                temp=temp.next
         else:
             temp = self.tail
             for _ in range(self.length - 1, index, -1):
@@ -130,6 +131,24 @@ class DoublyLinkedList:
 
         self.length+=1
         return True
+    
+    def remove(self,index):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        
+        temp = self.get(index)
+
+        temp.next.prev = temp.prev
+        temp.prev.next = temp.next
+        temp.next = None
+        temp.prev = None
+
+        self.length -=1
+        return temp
         
 
 
@@ -168,6 +187,12 @@ my_doubly_linked_list.print_list()
 
 print("testing insert..")
 my_doubly_linked_list.insert(2,45)
+my_doubly_linked_list.print_list()
+
+print("testing get")
+print(my_doubly_linked_list.get(2).value)
+print("testing remove...")
+print(my_doubly_linked_list.remove(2).value)
 my_doubly_linked_list.print_list()
                                        
                                        
