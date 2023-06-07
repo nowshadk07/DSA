@@ -26,6 +26,17 @@ class HashTable:
                 if self.data_map[index][i][0] == key:
                     return self.data_map[index][i][1]
         return None  #When we are looking of a key that is not in the hash table.
+    
+
+    def keys(self):
+        all_keys = []
+        for i in range(len(self.data_map)):
+            if self.data_map[i] is not None:
+                for j in range(len(self.data_map[i])):
+                    all_keys.append(self.data_map[i][j][0])
+        return all_keys
+    
+
 
 
 my_hash_table = HashTable()
@@ -43,4 +54,8 @@ print(my_hash_table.get_item('bolts'))
 print(my_hash_table.get_item('washers'))
 print(my_hash_table.get_item('lumber'))
 print(my_hash_table.get_item('rench'))
+
+
+print("Testing keys method")
+print(my_hash_table.keys())
 
