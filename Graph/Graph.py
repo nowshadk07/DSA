@@ -21,8 +21,11 @@ class Graph:
     
     def remove_edge(self,v1,v2):
         if v1 in self.adj_list.keys() and v2 in self.adj_list.keys():
-            self.adj_list[v1].remove(v2)
-            self.adj_list[v2].remove(v1)
+            try:
+                self.adj_list[v1].remove(v2)
+                self.adj_list[v2].remove(v1)
+            except ValueError:
+                pass
             return True
         return False
     
@@ -40,6 +43,7 @@ graph1 = Graph()
 graph1.add_vertex('A')
 graph1.add_vertex('B')
 graph1.add_vertex('C')
+graph1.add_vertex('D')
 graph1.add_edge('A','B')
 graph1.add_edge('B','C')
 graph1.add_edge('C','A')
@@ -47,5 +51,5 @@ graph1.add_edge('C','A')
 graph1.print_graph()
 
 print("Testing  remove_edge")
-graph1.remove_edge('A','B')
+graph1.remove_edge('A','D')
 graph1.print_graph()
