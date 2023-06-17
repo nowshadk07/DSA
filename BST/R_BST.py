@@ -10,25 +10,19 @@ class BinarySearchTree:
         self.root=None  
 
 
-    def insert(self,value):
-        new_node=Node(value)
+    def __r_insert(self,current_node, value):
+        if current_node == None:
+            return Node(value)
+        if value < current_node.value:
+            current_node.left = self.__r_insert(current_node.left, value)
+        if value > current_node.value:
+            current_node.right = self.__r_insert(current_node.right, value)
+        return current_node
+    
+    def r_insert(self, value):
         if self.root == None:
-            self.root=new_node
-            return True
-        temp = self.root
-        while (True):
-            if new_node.value==temp.value:
-                return False
-            if new_node.value < temp.value: 
-                if temp.left is None:
-                    temp.left = new_node
-                    return True
-                temp = temp.left
-            else:
-                if temp.right is None:
-                    temp.right = new_node
-                    return True
-                temp = temp.right    
+            self.root = Node(value)
+        self.__r_insert(self.root, value)
 
     def __r_contains(self,current_node, value):
         if current_node == None:
@@ -47,13 +41,13 @@ class BinarySearchTree:
 
 
 my_tree=BinarySearchTree()
-my_tree.insert(47)
-my_tree.insert(21)
-my_tree.insert(76)
-my_tree.insert(18)
-my_tree.insert(27)
-my_tree.insert(52)
-my_tree.insert(82)
+my_tree.r_insert(47)
+my_tree.r_insert(21)
+my_tree.r_insert(76)
+my_tree.r_insert(18)
+my_tree.r_insert(27)
+my_tree.r_insert(52)
+my_tree.r_insert(82)
 
 print(my_tree.root.value)
 print(my_tree.root.left.value)
